@@ -66,7 +66,7 @@ export default class Email {
       attachments: [
         {
           filename: "s5.png",
-          path: path.join(__dirname, "../views/email/s5.png"),
+          path: path.join(__dirname, "../views/email/logo.avif"),
           cid: "logoImage",
         },
       ],

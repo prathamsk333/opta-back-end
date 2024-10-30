@@ -45,7 +45,7 @@ export const getCurrentAddress = catchAsync(
 
 export const getSavedAddresses = catchAsync(
   async (req: CustomRequest, res: Response) => {
-    const currentAddress = await Address.findOne({ userId: req.user?.id });
+    const currentAddress = await Address.find({ userId: req.user?.id });
 
     if (!currentAddress) {
       return res.status(404).json({
@@ -58,6 +58,44 @@ export const getSavedAddresses = catchAsync(
       status: "success",
       data: {
         currentAddress,
+      },
+    });
+  }
+);
+
+export const getAddressDetails = catchAsync(
+  async (req: CustomRequest, res: Response) => {
+    const addressDetails = await Address.findById(req.params.id);
+    res.status(201).json({
+      status: "success",
+      data: {
+        addressDetails,
+      },
+    });
+  }
+);
+export const updateAddress = catchAsync(
+  async (req: CustomRequest, res: Response) => {
+    const updatedAddress = await Address.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedAddress) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Address not found",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        address: updatedAddress,
       },
     });
   }

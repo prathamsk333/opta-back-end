@@ -37,6 +37,14 @@ const addressSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "Please provide user id"],
   },
+  recentlyUsed: {
+    type: Date,
+    default: Date.now(),
+  },
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Address = mongoose.model<IAddress>("Address", addressSchema);
