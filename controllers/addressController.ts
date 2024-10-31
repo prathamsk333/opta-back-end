@@ -100,3 +100,21 @@ export const updateAddress = catchAsync(
     });
   }
 );
+
+export const deleteAddress = catchAsync(
+  async (req: CustomRequest, res: Response) => {
+    const deletedAddress = await Address.findByIdAndDelete(req.params.id);
+
+    if (!deletedAddress) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Address not found",
+      });
+    }
+
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  }
+);

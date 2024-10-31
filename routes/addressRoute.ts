@@ -7,6 +7,7 @@ import {
 } from "../controllers/addressController";
 import { protect } from "../controllers/authController";
 import { updateAddress } from "../controllers/addressController";
+import { deleteAddress } from "../controllers/addressController";
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router.get("/getSavedAddresses", protect, getSavedAddresses);
 router.get("/getAddressDetails/:id", protect, getAddressDetails);
 
 router.put("/updateAddress/:id", protect, updateAddress);
+
+router.delete("/deleteAddress/:id", protect, deleteAddress);
 
 export default router;
