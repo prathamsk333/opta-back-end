@@ -1,3 +1,4 @@
+site is live at: https://opta.prathamsk.me
 First, run the development server:
 
 npm run dev
